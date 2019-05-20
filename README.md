@@ -63,9 +63,9 @@ The `ublox_gps` node supports the following parameters for all products and firm
 ### For devices with firmware >= 7:
 * `gnss` parameters:
     * `gnss/gps`: Enable GPS receiver. Defaults to true.
-    * `gnss/glonass`: Enable GLONASS receiver. Defaults to false.
-    * `gnss/beidou`: Enable BeiDou receiver. Defaults to false.
-    * `gnss/qzss`: Enable QZSS receiver. Defaults to false.
+    * `gnss/glonass`: Enable GLONASS receiver. Defaults to false.(Global Navigation Satellite System. GLONASS is Russia's version of GPS)
+    * `gnss/beidou`: Enable BeiDou receiver. Defaults to false.(BeiDou Navigation Satellite System (BDS) is a Chinese satellite navigation system)
+    * `gnss/qzss`: Enable QZSS receiver. Defaults to false.(Japanese GPS)
     * `gnss/qzss_sig_cfg`: QZSS signal configuration. Defaults to L1CA. See `CfgGNSS` message for constants.
 * `nmea` parameters:
     * `nmea/set`: If true, the NMEA will be configured.
@@ -96,15 +96,16 @@ The `ublox_gps` node supports the following parameters for all products and firm
 * `save_on_shutdown`: If true, the node will send a `UBX-UPD-SOS` command to save the BBR to flash memory on shutdown. Defaults to false. 
 * `clear_bbr`: If true, the node will send a `UBX-UPD-SOS` command to clear the flash memory during configuration. Defaults to false.
 * Additional `gnss` params
-  * `gnss/galileo`: Enable Galileo receiver. Defaults to false.
-  * `gnss/imes`: Enable IMES receiver. Defaults to false.
+  * `gnss/galileo`: Enable Galileo receiver. Defaults to false.(device capable of determining a navigation solution by processing the signal broadcasted by Galileo satellites)
+  * `gnss/imes`: Enable IMES receiver. Defaults to false.(Indoor Messaging System)
 * `nmea/bds_talker_id`: (See other NMEA configuration parameters above) Sets the two characters that should be used for the BeiDou Talker ID.
 
 ### For UDR/ADR devices:
+Automotive Dead Reckoning (ADR) & UDR (Untethered Dead Reckoning) refers to GNSS data fused with inertial sensor data.
 * `use_adr`: Enable ADR/UDR. Defaults to true.
 * `nav_rate` should be set to 1 Hz.
 
-### For HPG Reference devices:
+### For HPG(High Precision GNSS) Reference devices:
 * `tmode3`: Time Mode. Required. See CfgTMODE3 for constants.
 * `arp/lla_flag`: True if the Fixed position is in Lat, Lon, Alt coordinates. False if ECEF. Required if `tmode3` is set to fixed. 
 * `arp/position`: Antenna Reference Point position in [m] or [deg]. Required if `tmode3` is set to fixed. 
