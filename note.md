@@ -20,10 +20,17 @@ Change Publish Message type
 * class **gps**: Handles communication with the U-Blox Devices
 * kSubscribeRate: Default subscribe Rate to u-blox messages [Hz]
 
-* `nmea2tfpose_core.cpp` in `autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/nmea2tfpose` parses 4 message type from  [**NMEA_Sentence**](http://wiki.ros.org/nmea_msgs), which are 
-<p align="center">
-<b>`QQ`: contains `time_stamp`, `roll`, `pitch` and `yaw`</b> <br>
-<b>`$PASHR`: Inertial Attitude Data, contains `time_stamp`, `roll`, `pitch` and `yaw`</b>
-<b>`$GPRMC`: Recommended minimum specific GPS/Transit data, contains `time_stamp`, `lat`, `long` and `height`</b>
-<b>`$GPGGA`: Global Positioning System Fix Data, contains `time_stamp`, `lat`, `long` and `height`</b>
-</p>
+### Autoware Interfaces and message type
+
+
+Autoware interfaces require GNSS message type to be [**NMEA_Sentence**](http://wiki.ros.org/nmea_msgs),(`nmea2tfpose_core.cpp` in `nmea2tfpose`) There are four sub-message types: `QQ``, $PASHR`, `$GPGGA`, and `$GPRMC`. They are all **nmea/sentences** but contains different information. \
+`QQ` and `$PASHR` provides with `roll, pitch, and yaw`.\
+Autoware parses `Latitude, Longitude, and Height` info from `$GPGGA` and `$GPRMC`.
+
+### Msgs
+
+* `QQ`: contains `time_stamp`, `roll`, `pitch` and `yaw`.
+* `$PASHR`: [Inertial Attitude Data](https://docs.novatel.com/OEM7/Content/SPAN_Logs/PASHR.htm), contains `time_stamp`, `roll`, `pitch` and `yaw`.
+* `$GPRMC`: [Recommended minimum specific GPS/Transit data](https://docs.novatel.com/OEM7/Content/Logs/GPRMC.htm?tocpath=Logs%7CView%20Logs%7CGNSS%20Logs%7C_____59), contains `time_stamp`, `lat`, `long` and `height`.
+* `$GPGGA`: [Global Positioning System Fix Data](https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm), contains `time_stamp`, `lat`, `long` and `height`.
+
