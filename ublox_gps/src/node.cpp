@@ -1266,7 +1266,7 @@ bool UbloxFirmware8::configureUblox() {
 void UbloxFirmware8::subscribe() {
   // Whether to publish Nav PVT messages
   nh->param("publish/nav/pvt", enabled["nav_pvt"], enabled["nav"]);
-  // Subscribe to Nav PVT
+  // Subscribe to Nav PVT firmware8 calls function from firmware7
   gps.subscribe<ublox_msgs::NavPVT>(
     boost::bind(&UbloxFirmware7Plus::callbackNavPvt, this, _1), kSubscribeRate);
 

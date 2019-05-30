@@ -825,13 +825,13 @@ class UbloxFirmware7Plus : public UbloxFirmware {
     fix.status.service = fix_status_service;
 
     // Set the position covariance
-    const double varH = pow(m.hAcc / 1000.0, 2); // to [m^2]
-    const double varV = pow(m.vAcc / 1000.0, 2); // to [m^2]
-    fix.position_covariance[0] = varH;
-    fix.position_covariance[4] = varH;
-    fix.position_covariance[8] = varV;
-    fix.position_covariance_type =
-        sensor_msgs::NavSatFix::COVARIANCE_TYPE_DIAGONAL_KNOWN;
+    // const double varH = pow(m.hAcc / 1000.0, 2); // to [m^2]
+    // const double varV = pow(m.vAcc / 1000.0, 2); // to [m^2]
+    // fix.position_covariance[0] = varH;
+    // fix.position_covariance[4] = varH;
+    // fix.position_covariance[8] = varV;
+    // fix.position_covariance_type =
+    //     sensor_msgs::NavSatFix::COVARIANCE_TYPE_DIAGONAL_KNOWN;
 
     fixPublisher.publish(fix);
 
