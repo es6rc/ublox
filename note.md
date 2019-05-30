@@ -19,3 +19,11 @@ Change Publish Message type
 * MonVER: The product type is determined from parsing the MonVER message.
 * class **gps**: Handles communication with the U-Blox Devices
 * kSubscribeRate: Default subscribe Rate to u-blox messages [Hz]
+
+* `nmea2tfpose_core.cpp` in `autoware/ros/src/computing/perception/localization/packages/gnss_localizer/nodes/nmea2tfpose` parses 4 message type from  [**NMEA_Sentence**](http://wiki.ros.org/nmea_msgs), which are 
+<p align="center">
+<b>`QQ`: contains `time_stamp`, `roll`, `pitch` and `yaw`</b> <br>
+<b>`$PASHR`: Inertial Attitude Data, contains `time_stamp`, `roll`, `pitch` and `yaw`</b>
+<b>`$GPRMC`: Recommended minimum specific GPS/Transit data, contains `time_stamp`, `lat`, `long` and `height`</b>
+<b>`$GPGGA`: Global Positioning System Fix Data, contains `time_stamp`, `lat`, `long` and `height`</b>
+</p>

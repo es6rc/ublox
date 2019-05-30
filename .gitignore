@@ -59,6 +59,7 @@ _*.pyc
 # VSCODE
 .vscode/
 .vscode/*
+
 # ZEND/ECLIPSE
 *.buildpath
 *.settings
