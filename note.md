@@ -7,18 +7,23 @@
 Node => GetParam (Config Ports) => 
 ```
 All configurations stay same in the yaml file and parser stays the same!
-Change Publish Message type
-* Config params: frequency and IMU
+Change Publish Message type.
+* Config params: frequency and IMU.
 
-* Enable Autoware with starting Ublox driver
+* Enable Autoware with starting Ublox driver.
 
 
 
-## Notes
-
+# Note
+## 
 * MonVER: The product type is determined from parsing the MonVER message.
-* class **gps**: Handles communication with the U-Blox Devices
-* kSubscribeRate: Default subscribe Rate to u-blox messages [Hz]
+* class **gps**: Handles communication with the U-Blox Devices.
+* kSubscribeRate: Default subscribe Rate to u-blox messages [Hz].
+* ublox_msgs/NavPOSLLH.msg is Navigation latitude, longitude and height messages.
+* NavSOL message is for Firmware <=6.
+* in node.cpp, the `fix_` variable is only for Firmware <= 6, the right var to use is `fix` which is advertised in *node.h* + ***Line 789***.
+
+
 
 ### Autoware Interfaces and message type
 
@@ -34,3 +39,28 @@ Autoware parses `Latitude, Longitude, and Height` info from `$GPGGA` and `$GPRMC
 * `$GPRMC`: [Recommended minimum specific GPS/Transit data](https://docs.novatel.com/OEM7/Content/Logs/GPRMC.htm?tocpath=Logs%7CView%20Logs%7CGNSS%20Logs%7C_____59), contains `time_stamp`, `lat`, `long` and `height`.
 * `$GPGGA`: [Global Positioning System Fix Data](https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm), contains `time_stamp`, `lat`, `long` and `height`.
 
+## Ublox Interfaces and message type (partial)
+
+ [UBLOX MANUAL](https://www.u-blox.com/sites/default/files/products/documents/u-blox8-M8_ReceiverDescrProtSpec_%28UBX-13003221%29_Public.pdf#page=354&zoom=100,0,0)
+
+`NAV`: Navigation Results Messages: Position, Speed, Time, Acceleration, Heading, DOP, SVs used.
+
+`ESF`: External Sensor Fusion Messages: i.e. External Sensor Measurements and Status Information.
+
+`ADR/UDR`: Automotive Dead Reckoning/Untethered Dead Reckoning.
+
+## Abbrs
+
+* `RTC` abbr for Real Time Clock.
+* `DOP` abbr for Dilution of Precision: specify the additional multiplicative effect of navigation satellite geometry on positional measurement precision.
+* `RTCM` abbr for Radio Technical Commission for Maritime Services.
+
+**Msgs ID classes** from *P153/409* or *P138/394* in [manual](https://www.u-blox.com/sites/default/files/products/documents/u-blox8-M8_ReceiverDescrProtSpec_%28UBX-13003221%29_Public.pdf#page=354&zoom=100,0,0).
+* `AID` abbr for AssistNow Aiding Messages.
+* `CFG` abbr for Configuration Input Messages.
+* `INF` abbr for Information Messages: i.e. Printf-Style Messages, with IDs such as Error, Warning, Notice.
+* `NAV` abbr for Navigation Results Messages: Position, Speed, Time, Acceleration, Heading, DOP, SVs used.
+* `ESF` abbr for External Sensor Fusion.
+* `HNR` abbr for High Rate Navigation Results Messages: i.e. High rate time, position, speed, heading.
+* `RXM` abbr for Receiver Manager Messages: Satellite Status, RTC Status.
+* `TIM` abbr for Timing Messages: Time Pulse Output, Time Mark Results.
